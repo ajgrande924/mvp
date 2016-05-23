@@ -16,23 +16,20 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
  
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+## About##
+  > Beyond The Whiteboard is a fitness app used to track workouts (Workout of the Day's) of different members from different affiliate Crossfit gyms. The member will have access to his unique user page where he can log his results from a specific workout. The member will also have a feed to view the results from members of the same affiliate. The user will also have a level associated with his results and can be compared with members from different affiliates.  
 
-## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
-
-## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+##  ##
+  > The market for this would be members of any crossfit affiliate. There were over 200,000 members that signed up for the Open in 2016. From my local affiliate, less than half of the members signed up for the Open but many use some sort of fitness app to track their progress. 
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Members from any crossfit affiliate would want an app to track their progress for specific workouts. As opposed to members using different apps to track their progress, why not have one specifically for tracking crossfit wod's.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > The main goal of this app is to track the progress of the user and also use it as a social platform for members of the same affiliate.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "It's not who you are that holds you back, it's who you think you are not"
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
