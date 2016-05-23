@@ -9,7 +9,8 @@ var ReactDOM = require('react-dom');
 			users: props.users,
 			user: props.users[0],
 			wods: props.wods,
-			wod: props.wods[0]
+			wod: props.wods[0],
+			results: props.results
 		}
 	}
 
@@ -24,30 +25,39 @@ var ReactDOM = require('react-dom');
 				<UserInfo user={this.state.user} />
 				<WodViewer wod={this.state.wod} />
 				<EnterResults wod={this.state.wod} user={this.state.user}/> 
-				<UserFeed />
+				<Buffer results={this.state.results}/>
+				<UserFeed results={this.state.results}/>
 			</div>
 		);
 	}
 }
 
+var Buffer = (props) => (
+	<div className='list-group col-md-6'> 
+		{props.results.map(result => 
+			<a className="list-group-item">
+			  <h4 className="list-group-item-heading">Buffer</h4>
+			  <p className="list-group-item-text">Buffer</p>
+			  <p className="list-group-item-text">buffer</p>
+			</a>
+		)}
+	</div>
+)
+
 var UserFeed = (props) => (
-	<div> 
-		<UserFeedPost />
+	<div className='list-group col-md-6'> 
+		{props.results.map(result => 
+			<UserFeedPost result={result}/>
+		)}
 	</div>
 )
 
 var UserFeedPost = (props) => (
-	<div className="navbar navbar-default">
-	  <div className="container">
-	    <div className="navbar-header">
-	      <a className="navbar-brand" href="#">Message Board</a>
-	    </div>
-	    <ul className="nav navbar-nav">
-	      <li className="active"><a href="/">Home</a></li>
-	    </ul>
-	    <p className="navbar-text pull-right">logged_in_user@email.com | <a href="log_out_link_here">Log Out</a></p>
-	  </div>
-	</div>
+	<a className="list-group-item">
+	  <h4 className="list-group-item-heading">{props.result.name}</h4>
+	  <p className="list-group-item-text">{props.result.name} finished {props.result.wod} in {props.result.time}!</p>
+	  <p className="list-group-item-text">{props.result.name} finished {props.result.wod} with {props.result.rounds} + {props.result.partial} rounds!</p>
+	</a>
 )
 
 var NavBar = (props) => (
@@ -158,12 +168,7 @@ var EnterResults = (props) => (
 	</div>
 )
 
-
-
-
-
-
-ReactDOM.render(<App users={users} wods={wods}/>, document.getElementById('app'));
+ReactDOM.render(<App users={users} wods={wods} results={results}/>, document.getElementById('app'));
 
 
 
