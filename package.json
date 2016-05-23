@@ -1,0 +1,28 @@
+{
+  "name": "mvp-beyond-the-whiteboard",
+  "version": "1.0.0",
+  "description": "beyond-the-whiteboard-app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "start-babel": "babel-node server.js"
+  },
+  "author": "AJ Grande",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.9.0",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "webpack": "^1.13.1"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "style-loader": "^0.13.1",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.10.0"
+  }
+}

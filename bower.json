@@ -1,0 +1,21 @@
+{
+  "name": "react.boilerplate",
+  "description": "react boilerplate",
+  "main": "index.js",
+  "authors": [
+    "AJ Grande <ajgrande924@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/ajgrande924/react.boilerplate",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.4"
+  }
+}
