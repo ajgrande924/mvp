@@ -14,8 +14,15 @@ var ReactDOM = require('react-dom');
 		}
 	}
 
-	handleScoreSubmit() {
-		console.log('bang');
+	handleScoreSubmit(result) {
+		console.log('date', new Date());
+		var dateObj = new Date();
+		var month = dateObj.getUTCMonth() + 1; //months from 1-12
+		var day = dateObj.getUTCDate();
+		var year = dateObj.getUTCFullYear();
+		var newDate = '' + month + '/' + day + '/' + year 
+		result.date = newDate;
+		this.setState({results: [result].concat(this.state.results)});
 	}
 
 	render() {
@@ -24,7 +31,7 @@ var ReactDOM = require('react-dom');
 				<NavBar users={this.state.users} wods={this.state.wods} setAppState={this.setState.bind(this)}/>
 				<UserInfo user={this.state.user} />
 				<WodViewer wod={this.state.wod} />
-				<EnterResults wod={this.state.wod} user={this.state.user}/> 
+				<EnterResults wod={this.state.wod} user={this.state.user} handleScoreSubmit={this.handleScoreSubmit.bind(this)}/> 
 				<Buffer results={this.state.results}/>
 				<UserFeed results={this.state.results}/>
 			</div>
@@ -45,7 +52,7 @@ var Buffer = (props) => (
 )
 
 var UserFeed = (props) => (
-	<div className='list-group col-md-6'> 
+	<div className='list-group col-md-6 userFeed'> 
 		{props.results.map(result => 
 			<UserFeedPost result={result}/>
 		)}
@@ -55,6 +62,7 @@ var UserFeed = (props) => (
 var UserFeedPost = (props) => (
 	<a className="list-group-item">
 	  <h4 className="list-group-item-heading">{props.result.name}</h4>
+	  <span className="label label-default label-pill pull-xs-right">{props.result.date}</span>
 	  <p className="list-group-item-text">{props.result.name} finished {props.result.wod} in {props.result.time}!</p>
 	  <p className="list-group-item-text">{props.result.name} finished {props.result.wod} with {props.result.rounds} + {props.result.partial} rounds!</p>
 	</a>
@@ -122,7 +130,7 @@ var DropdownOpenWod = (props) => (
 )
 
 var UserInfo = (props) => (
-	<div className='container-fluid col-xs-6 col-sm-3 '>
+	<div className='container-fluid col-xs-6 col-sm-3 userInfo'>
 		<img className='img-thumbnail' src={props.user.url}></img>
 		<p>{props.user.name}</p>
 		<p>{props.user.sex} | {props.user.age}</p>
@@ -131,7 +139,7 @@ var UserInfo = (props) => (
 )
 
 var WodViewer = (props) => (
-	<div className='col-sm-4'>
+	<div className='col-sm-4 wodViewer'>
 		<div className='panel panel-default'>
 			<div className='panel-heading'>
 				<h2>{props.wod.name}</h2>
@@ -146,7 +154,7 @@ var WodViewer = (props) => (
 )
 
 var EnterResults = (props) => (
-	<div className='col-sm-4'>
+	<div className='col-sm-4 enterResults'>
 		<div className='panel panel-default'>
 			<div className='panel-heading'>
 				<h2>Results</h2>
@@ -155,7 +163,7 @@ var EnterResults = (props) => (
 				<div className='form-group'> 
 					<label>What was your time?</label>
 					<input id='time' type='text' className='form-control' placeholder='really?'></input>
-					<button onClick={() => props.handleScoreSubmit({time: $('#time').val()})} type='submit' className='btn btn-primary'>Submit</button>
+					<button onClick={() => props.handleScoreSubmit({ name: props.user.name, wod: props.wod.name, time: $('#time').val(), date: ''})} type='submit' className='btn btn-primary'>Submit</button>
 				</div> 
 				<div className='form-group'>
 					<label>How Many Rounds Did You Do?</label>

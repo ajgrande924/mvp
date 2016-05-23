@@ -77,35 +77,40 @@ var results = [
 		wod: 'Cindy',
 		time: null,
 		rounds: '13',
-		partial: '15'
+		partial: '15',
+		date: '5/10/16'
 	},
 	{
 		name: 'Drake',
 		wod: 'Cindy',
 		time: null,
 		rounds: '13',
-		partial: '15'
+		partial: '15',
+		date: '4/24/16'
 	},
 	{
 		name: 'Chris Rock',
 		wod: 'Cindy',
 		time: null,
 		rounds: '18',
-		partial: '6'
+		partial: '6',
+		date: '4/12/16'
 	},
 	{
 		name: 'Steve Ballmer',
 		wod: 'Cindy',
 		time: null,
 		rounds: '8',
-		partial: '5'
+		partial: '5',
+		date: '3/27/16'
 	},
 	{
 		name: 'AJ Grande',
 		wod: 'Cindy',
 		time: null,
 		rounds: '15',
-		partial: '15'
+		partial: '15',
+		date: '3/11/16'
 	}
 ]
 
