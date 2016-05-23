@@ -14,9 +14,23 @@ var users = [
 		affiliate: 'Crossfit San Leandro'
 	},
 	{
-		name: 'Stephen Curry',
+		name: 'Chris Rock',
 		sex: 'male',
-		age: 28,
+		age: 35,
+		url: '../images/male.icon.png',
+		affiliate: 'Crossfit San Leandro'
+	},
+	{
+		name: 'Steve Ballmer',
+		sex: 'male',
+		age: 53,
+		url: '../images/male.icon.png',
+		affiliate: 'Crossfit San Leandro'
+	},
+	{
+		name: 'Drake',
+		sex: 'male',
+		age: 32,
 		url: '../images/male.icon.png',
 		affiliate: 'Crossfit San Leandro'
 	},
@@ -33,6 +47,65 @@ var users = [
 		age: 46,
 		url: '../images/female.icon.png',
 		affiliate: 'Crossfit San Leandro'
+	},
+		{
+		name: 'Jennifer Aniston',
+		sex: 'female',
+		age: 42,
+		url: '../images/female.icon.png',
+		affiliate: 'Crossfit San Leandro'
+	},
+	{
+		name: 'Ronda Rousey',
+		sex: 'female',
+		age: 30,
+		url: '../images/female.icon.png',
+		affiliate: 'Crossfit San Leandro'
+	},
+		{
+		name: 'Hilary Clinton',
+		sex: 'female',
+		age: 60,
+		url: '../images/female.icon.png',
+		affiliate: 'Crossfit San Leandro'
+	}
+]
+
+var results = [
+	{
+		name: 'Draymond Green',
+		wod: 'Cindy',
+		time: null,
+		rounds: '13',
+		partial: '15'
+	},
+	{
+		name: 'Drake',
+		wod: 'Cindy',
+		time: null,
+		rounds: '13',
+		partial: '15'
+	},
+	{
+		name: 'Chris Rock',
+		wod: 'Cindy',
+		time: null,
+		rounds: '18',
+		partial: '6'
+	},
+	{
+		name: 'Steve Ballmer',
+		wod: 'Cindy',
+		time: null,
+		rounds: '8',
+		partial: '5'
+	},
+	{
+		name: 'AJ Grande',
+		wod: 'Cindy',
+		time: null,
+		rounds: '15',
+		partial: '15'
 	}
 ]
 
