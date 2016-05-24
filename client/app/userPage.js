@@ -25,6 +25,14 @@ var ReactDOM = require('react-dom');
 		this.setState({results: [result].concat(this.state.results)});
 	}
 
+	// clickLike(name) {
+
+	// }
+
+	// clickDislike(name) {
+
+	// }
+
 	render() {
 		return ( 
 			<div>
@@ -33,7 +41,7 @@ var ReactDOM = require('react-dom');
 				<WodViewer wod={this.state.wod} />
 				<EnterResults wod={this.state.wod} user={this.state.user} handleScoreSubmit={this.handleScoreSubmit.bind(this)}/> 
 				<Buffer results={this.state.results}/>
-				<UserFeed results={this.state.results} users={this.state.users}/>
+				<UserFeed results={this.state.results} users={this.state.users} />
 			</div>
 		);
 	}
@@ -70,8 +78,18 @@ var UserFeedPost = (props) => (
 		  <p className="list-group-item-text">{props.result.name} finished {props.result.wod} with {props.result.rounds} + {props.result.partial} rounds!</p>
 		</div>  
 		  <span className="label label-default label-pill pull-xs-right">{props.result.date}</span>
+		  <button className="btn btn-xs btn-success">Like</button>
+		  <button className="btn btn-xs btn-danger">Dislike</button>
 	</a>
 )
+
+// var UserLike = (props) => (
+// 	<p className="list-group-item-text">{props.result.name} is glad that you lost!</p>
+// )
+
+// var UserDislike = (props) => (
+// 	<p className="list-group-item-text">{props.result.name} has a bad taste in his mouth after that loss!</p>
+// )
 
 var NavBar = (props) => (
 	<div>
