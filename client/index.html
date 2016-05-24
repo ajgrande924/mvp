@@ -21,10 +21,14 @@
       width: 75px;
     }
     .userFeedImage {
-      margin-right: 2em;
+      margin-right: 1em;
+      margin-bottom: 1em;
     }
     .userFeedText, .userFeed {
       display: inline-block;
+    }
+    .btn-success, .btn-danger {
+      margin-right: .5em;
     }
     .mylabel, #time, #rounds, #partial {
       margin-bottom: 1em;
@@ -36,13 +40,5 @@
   <div id="app"></div>
   <script type="text/javascript" src="data.js"></script>
   <script type="text/javascript" src="dist/userPage.bundle.js"></script>
-
-  <form action="/new" method="POST">
-    <label for="email"></label>
-    <input type="email" name="email"></input>
-    <label for="name"></label>
-    <input type="text" name="name"></input>
-    <input type="submit" />  
-  </form>
 </body>
 </html>

@@ -1,3 +1,16 @@
+
+// handle score submit using dummy data
+	handleScoreSubmit(result) {
+		console.log('date', new Date());
+		var dateObj = new Date();
+		var month = dateObj.getUTCMonth() + 1; //months from 1-12
+		var day = dateObj.getUTCDate();
+		var year = dateObj.getUTCFullYear();
+		var newDate = '' + month + '/' + day + '/' + year 
+		result.date = newDate;
+		this.setState({results: [result].concat(this.state.results)});
+	}
+
 ////implementation of wods in list item view
 <WorkoutSelect wods={this.state.wods} setAppState={this.setState.bind(this)}/>
 

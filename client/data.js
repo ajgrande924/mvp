@@ -1,8 +1,8 @@
 var users = [
 	{
-		name: 'AJ Grande',
+		name: 'Bob Barker',
 		sex: 'Male',
-		age: 26,
+		age: 70,
 		url: '../images/male.icon.png',
 		affiliate: 'Crossfit San Leandro'
 	},
@@ -78,7 +78,7 @@ var results = [
 		time: null,
 		rounds: '13',
 		partial: '15',
-		date: '5/10/16',
+		date: '2/10/16',
 		url: '../images/male.icon.png'
 	},
 	{
@@ -87,7 +87,7 @@ var results = [
 		time: null,
 		rounds: '13',
 		partial: '15',
-		date: '4/24/16',
+		date: '2/24/16',
 		url: '../images/male.icon.png'
 	},
 	{
@@ -96,7 +96,7 @@ var results = [
 		time: null,
 		rounds: '18',
 		partial: '6',
-		date: '4/12/16',
+		date: '3/12/16',
 		url: '../images/male.icon.png'
 	},
 	{
@@ -109,12 +109,12 @@ var results = [
 		url: '../images/male.icon.png'
 	},
 	{
-		name: 'AJ Grande',
+		name: 'Bob Barker',
 		wod: 'Cindy',
 		time: null,
 		rounds: '15',
 		partial: '15',
-		date: '3/11/16',
+		date: '4/11/16',
 		url: '../images/male.icon.png'
 	}
 ]

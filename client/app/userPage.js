@@ -14,17 +14,6 @@ var ReactDOM = require('react-dom');
 		}
 	}
 
-	// handleScoreSubmit(result) {
-	// 	console.log('date', new Date());
-	// 	var dateObj = new Date();
-	// 	var month = dateObj.getUTCMonth() + 1; //months from 1-12
-	// 	var day = dateObj.getUTCDate();
-	// 	var year = dateObj.getUTCFullYear();
-	// 	var newDate = '' + month + '/' + day + '/' + year 
-	// 	result.date = newDate;
-	// 	this.setState({results: [result].concat(this.state.results)});
-	// }
-
 	componentDidMount() {
 		this.loadUsers();
 		this.loadResults();
@@ -36,6 +25,7 @@ var ReactDOM = require('react-dom');
 		$.ajax('/users').done(function(users) {
 			console.log('users', users);
 			context.setState({ users: users });
+			context.setState({ user: users[0] });
 		})
 	}
 
@@ -52,11 +42,12 @@ var ReactDOM = require('react-dom');
 		$.ajax('/wods').done(function(wods) {
 			console.log('wods', wods);
 			context.setState({ wods: wods });
+			context.setState({ wod: wods[0] });
 		})
-	}
+	} 
 
 	handleScoreSubmit(result) {
-		console.log('date', new Date());
+		var context = this;
 		var dateObj = new Date();
 		var month = dateObj.getUTCMonth() + 1; //months from 1-12
 		var day = dateObj.getUTCDate();
@@ -64,16 +55,19 @@ var ReactDOM = require('react-dom');
 		var newDate = '' + month + '/' + day + '/' + year 
 		result.date = newDate;
 		this.setState({results: [result].concat(this.state.results)});
-		$.ajax({
-	      type: 'POST', url: '/results', contentType: 'application/json',
-	      data: JSON.stringify(result),
-	      success: function(data) {
-	      	console.log('added successfully');
-	      }.bind(this),
-	      error: function(xhr, status, err) {
-	        console.log("Error adding bug:", err);
-	      }
-	    });
+		// $.ajax({
+	 //      type: 'POST', 
+	 //      url: '/results', 
+	 //      contentType: 'application/json',
+	 //      cache: false,
+	 //      data: JSON.stringify(result),
+	 //      success: function(data) {
+	 //      	console.log('added successfully');
+	 //      }.bind(this),
+	 //      error: function(xhr, status, err) {
+	 //        console.log("Error adding result:", err);
+	 //      }.bind(this)
+	    // });
 	}
 
 	render() {
@@ -112,17 +106,23 @@ var UserFeed = (props) => (
 
 var UserFeedPost = (props) => (
 	<a className="list-group-item">
-	  	<div className='userFeed'>
-	  		<img className='img-thumbnail userFeedImage' src={props.result.url}></img>
-		</div>
-		<div className='userFeedText'>
-		  <h4 className="list-group-item-heading">{props.result.name}</h4>
-		  <p className="list-group-item-text">{props.result.name} finished {props.result.wod} in {props.result.time}!</p>
-		  <p className="list-group-item-text">{props.result.name} finished {props.result.wod} with {props.result.rounds} + {props.result.partial} rounds!</p>
-		</div>  
+	  	<div>
 		  <span className="label label-default label-pill pull-xs-right">{props.result.date}</span>
+	  	</div>
+	  	<div>
+		  	<div className='userFeed'>
+		  		<img className='img-thumbnail userFeedImage' src={props.result.url}></img>
+			</div>
+			<div className='userFeedText'>
+			  <h4 className="list-group-item-heading">{props.result.name}</h4>
+			  <p className="list-group-item-text">{props.result.name} finished {props.result.wod} in {props.result.time}!</p>
+			  <p className="list-group-item-text">{props.result.name} finished {props.result.wod} with {props.result.rounds} + {props.result.partial} rounds!</p>
+			</div>  
+		</div>
+		<div>  
 		  <button className="btn btn-xs btn-success">Like</button>
 		  <button className="btn btn-xs btn-danger">Dislike</button>
+		</div>
 	</a>
 )
 
@@ -157,22 +157,25 @@ var NavBar = (props) => (
                 <li className="dropdown">
                   <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">WODs<span className="caret"></span></a>
                   <ul className="dropdown-menu">
-                  	<li class="dropdown-header">Benchmark</li>
+                  	<li className="dropdown-header">Benchmark</li>
 					{props.wods.filter(wod => wod.type === 'benchmark').map(benchmark => 
 						<DropdownBenchmarkWod wod={benchmark} setAppState={props.setAppState}/>
 					)}
-					<li role="separator" class="divider"></li>
-					<li class="dropdown-header">Heroes</li>
+					<li role="separator" className="divider"></li>
+					<li className="dropdown-header">Heroes</li>
 					{props.wods.filter(wod => wod.type === 'hero').map(hero => 
 						<DropdownHeroWod wod={hero} setAppState={props.setAppState}/>
 					)}
-					<li role="separator" class="divider"></li>
-					<li class="dropdown-header">Past Open</li>
+					<li role="separator" className="divider"></li>
+					<li className="dropdown-header">Past Open</li>
 					{props.wods.filter(wod => wod.type === 'open').map(open => 
 						<DropdownOpenWod wod={open} setAppState={props.setAppState}/>
 					)}
                   </ul>
                 </li>
+		      </ul>
+		      <ul className='nav navbar-nav navbar-right'>
+		      	 <li><a>Logout</a></li>
 		      </ul>
 		    </div>
 		  </div>
