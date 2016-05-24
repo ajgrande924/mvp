@@ -78,7 +78,8 @@ var results = [
 		time: null,
 		rounds: '13',
 		partial: '15',
-		date: '5/10/16'
+		date: '5/10/16',
+		url: '../images/male.icon.png'
 	},
 	{
 		name: 'Drake',
@@ -86,7 +87,8 @@ var results = [
 		time: null,
 		rounds: '13',
 		partial: '15',
-		date: '4/24/16'
+		date: '4/24/16',
+		url: '../images/male.icon.png'
 	},
 	{
 		name: 'Chris Rock',
@@ -94,7 +96,8 @@ var results = [
 		time: null,
 		rounds: '18',
 		partial: '6',
-		date: '4/12/16'
+		date: '4/12/16',
+		url: '../images/male.icon.png'
 	},
 	{
 		name: 'Steve Ballmer',
@@ -102,7 +105,8 @@ var results = [
 		time: null,
 		rounds: '8',
 		partial: '5',
-		date: '3/27/16'
+		date: '3/27/16',
+		url: '../images/male.icon.png'
 	},
 	{
 		name: 'AJ Grande',
@@ -110,7 +114,8 @@ var results = [
 		time: null,
 		rounds: '15',
 		partial: '15',
-		date: '3/11/16'
+		date: '3/11/16',
+		url: '../images/male.icon.png'
 	}
 ]
 

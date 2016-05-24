@@ -33,7 +33,7 @@ var ReactDOM = require('react-dom');
 				<WodViewer wod={this.state.wod} />
 				<EnterResults wod={this.state.wod} user={this.state.user} handleScoreSubmit={this.handleScoreSubmit.bind(this)}/> 
 				<Buffer results={this.state.results}/>
-				<UserFeed results={this.state.results}/>
+				<UserFeed results={this.state.results} users={this.state.users}/>
 			</div>
 		);
 	}
@@ -54,17 +54,22 @@ var Buffer = (props) => (
 var UserFeed = (props) => (
 	<div className='list-group col-md-6 userFeed'> 
 		{props.results.map(result => 
-			<UserFeedPost result={result}/>
+			<UserFeedPost result={result} users={props.users}/>
 		)}
 	</div>
 )
 
 var UserFeedPost = (props) => (
 	<a className="list-group-item">
-	  <h4 className="list-group-item-heading">{props.result.name}</h4>
-	  <span className="label label-default label-pill pull-xs-right">{props.result.date}</span>
-	  <p className="list-group-item-text">{props.result.name} finished {props.result.wod} in {props.result.time}!</p>
-	  <p className="list-group-item-text">{props.result.name} finished {props.result.wod} with {props.result.rounds} + {props.result.partial} rounds!</p>
+	  	<div className='userFeed'>
+	  		<img className='img-thumbnail userFeedImage' src={props.result.url}></img>
+		</div>
+		<div className='userFeedText'>
+		  <h4 className="list-group-item-heading">{props.result.name}</h4>
+		  <p className="list-group-item-text">{props.result.name} finished {props.result.wod} in {props.result.time}!</p>
+		  <p className="list-group-item-text">{props.result.name} finished {props.result.wod} with {props.result.rounds} + {props.result.partial} rounds!</p>
+		</div>  
+		  <span className="label label-default label-pill pull-xs-right">{props.result.date}</span>
 	</a>
 )
 
@@ -131,7 +136,7 @@ var DropdownOpenWod = (props) => (
 
 var UserInfo = (props) => (
 	<div className='container-fluid col-xs-6 col-sm-3 userInfo'>
-		<img className='img-thumbnail' src={props.user.url}></img>
+		<img className='img-thumbnail userInfoImage' src={props.user.url}></img>
 		<p>{props.user.name}</p>
 		<p>{props.user.sex} | {props.user.age}</p>
 		<p>Affiliate: {props.user.affiliate}</p>
@@ -161,15 +166,15 @@ var EnterResults = (props) => (
 			</div>
 			<div className='panel-body'>
 				<div className='form-group'> 
-					<label>What was your time?</label>
-					<input id='time' type='text' className='form-control' placeholder='really?'></input>
-					<button onClick={() => props.handleScoreSubmit({ name: props.user.name, wod: props.wod.name, time: $('#time').val(), date: ''})} type='submit' className='btn btn-primary'>Submit</button>
+					<label className='mylabel'>What was your time?</label>
+					<input id='time' type='text' className='form-control' placeholder='Enter your time'></input>
+					<button onClick={() => props.handleScoreSubmit({ name: props.user.name, wod: props.wod.name, time: $('#time').val(), date: '', url: props.user.url})} type='submit' className='btn btn-primary'>Submit</button>
 				</div> 
 				<div className='form-group'>
-					<label>How Many Rounds Did You Do?</label>
-					<input id='rounds' type='text' className='form-control' placeholder='really?'></input>
-					<input id='partial' type='text' className='form-control' placeholder='really?really?'></input>
-					<button onClick={() => props.handleScoreSubmit({rounds: $('#rounds').val(), partial: $('#partial').val()})} type='submit' className='btn btn-primary'>Submit</button>
+					<label className='mylabel'>How Many Rounds Did You Do?</label>
+					<input id='rounds' type='text' className='form-control' placeholder='Enter your rounds'></input>
+					<input id='partial' type='text' className='form-control' placeholder='Enter your partial'></input>
+					<button onClick={() => props.handleScoreSubmit({name: props.user.name, wod: props.wod.name, rounds: $('#rounds').val(), partial: $('#partial').val(), date: '', url: props.user.url})} type='submit' className='btn btn-primary'>Submit</button>
 				</div>
 			</div>
 		</div>
