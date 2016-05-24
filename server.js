@@ -61,6 +61,25 @@ app.get('/wods', function(req, res) {
 	})
 })
 
+app.post('/results', function(req, res) {
+	console.log('req.body', req.body);
+	var newResults = new Result({
+		name: req.body.name,
+	    wod: req.body.wod,
+	    time: req.body.time,
+	    rounds: req.body.rounds,
+	    partial: req.body.partial,
+	    date: req.body.date,
+	    url: req.body.url
+	}).save(function(err) {
+		if (err) {
+			console.log('error');
+		} else {
+			console.log('saved');
+		}
+	});
+})
+
 app.listen(3000, function() {
 	console.log('Listening on Port ', 3000);
 }); 
