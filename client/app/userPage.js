@@ -6,7 +6,7 @@ var ReactDOM = require('react-dom');
 	constructor(props) {
 		super(props) 
 		this.state = {
-			users: props.users,
+			users: [],
 			user: props.users[0],
 			wods: props.wods,
 			wod: props.wods[0],
@@ -25,13 +25,15 @@ var ReactDOM = require('react-dom');
 		this.setState({results: [result].concat(this.state.results)});
 	}
 
-	// clickLike(name) {
+	componentDidMount() {
+		this.loadData();
+	}
 
-	// }
-
-	// clickDislike(name) {
-
-	// }
+	loadData() {
+		$.ajax('/users').done(function(data) {
+			this.setState({ users: data });
+		})
+	}
 
 	render() {
 		return ( 

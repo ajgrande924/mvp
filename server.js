@@ -17,13 +17,49 @@ var app = express();
 var compiler = webpack(config);
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true }));
 
 app.use(express.static(__dirname + '/client'));  
 app.use(webpackMiddleware(compiler));  
-app.get('*', function response(req, res) {  
-  res.sendFile(path.join(__dirname, '/client/index.html'));
-});
+
+// app.get('*', function response(req, res) {  
+//   res.sendFile(path.join(__dirname, '/client/index.html'));
+// });
+
+app.get('/users', function(req, res) {
+	console.log('query string', req.query);
+	User.find({}).exec(function(err, users) {
+		if (err) {
+			console.log('error in fetching users');
+		} else {
+			console.log('users', users);
+			res.status(200).send(users);
+		}
+	})
+})
+
+app.get('/results', function(req, res) {
+	console.log('query string', req.query);
+	Result.find({}).exec(function(err, results) {
+		if (err) {
+			console.log('error in fetching results');
+		} else {
+			console.log('results', results);
+			res.status(200).send(results);
+		}
+	})
+})
+
+app.get('/wods', function(req, res) {
+	console.log('query string', req.query);
+	Wod.find({}).exec(function(err, wods) {
+		if (err) {
+			console.log('error in fetching wods');
+		} else {
+			console.log('wods', wods);
+			res.status(200).send(wods);
+		}
+	})
+})
 
 app.listen(3000, function() {
 	console.log('Listening on Port ', 3000);
