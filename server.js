@@ -11,6 +11,7 @@ var db = require('./db/dbConfig.js');
 var User = require('./db/userModel.js');
 var Wod = require('./db/wodModel.js');
 var Result = require('./db/resultModel.js');
+var Quote = require('./db/quoteModel.js');
 
 
 var app = express();  
@@ -62,6 +63,18 @@ app.get('/wods', function(req, res) {
 	})
 })
 
+app.get('/quotes', function(req, res) {
+	console.log('query string', req.query);
+	Quote.find({}).exec(function(err, quotes) {
+		if (err) {
+			console.log('error in fetching quotes');
+		} else {
+			console.log('quotes', quotes);
+			res.status(200).send(quotes);
+		}
+	})
+})
+
 app.post('/results', function(req, res) {
 	console.log('req.body', req.body);
 	var newResults = new Result({
@@ -72,6 +85,21 @@ app.post('/results', function(req, res) {
 	    partial: req.body.partial,
 	    date: req.body.date,
 	    url: req.body.url
+	}).save(function(err) {
+		if (err) {
+			console.log('error');
+		} else {
+			console.log('saved');
+			// res.status(200).send('hello');
+		}
+	});
+})
+
+app.post('/quotes', function(req, res) {
+	console.log('req.body', req.body);
+	var newQuotes = new Quote({
+		quote: req.body.quote,
+	    author: req.body.quote
 	}).save(function(err) {
 		if (err) {
 			console.log('error');
