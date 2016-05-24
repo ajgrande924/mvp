@@ -11,7 +11,7 @@ var ReactDOM = require('react-dom');
 			wods: [],
 			wod: props.wods[0],
 			results: [],
-			quotes: props.quotes,
+			quotes: [],
 			quote: props.quotes[0]
 		}
 	}
@@ -20,6 +20,7 @@ var ReactDOM = require('react-dom');
 		this.loadUsers();
 		this.loadResults();
 		this.loadWods();
+		this.loadQuotes();
 	}
 
 	loadUsers() {
@@ -48,9 +49,19 @@ var ReactDOM = require('react-dom');
 		})
 	}
 
+	loadQuotes() {
+		var context = this;
+		$.ajax('/quotes').done(function(quotes) {
+			console.log('quotes', quotes);
+			context.setState({ quotes: quotes });
+			context.setState({ quote: quotes[0] });
+		})
+	}
+
 	randomQuote() {
+		console.log('sdafasf', this.state.quotes);
 		var index = Math.floor(Math.random() * this.state.quotes.length);
-		this.setState({ quotes: this.state.quotes[index]});
+		this.setState({ quote: this.state.quotes[index]});
 	} 
 
 	handleQuoteSubmit(quote) {

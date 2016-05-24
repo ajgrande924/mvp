@@ -220,10 +220,10 @@ var quotes = [
 	{
 		quote: 'The goal is to get fit, make it the best hour of your day, stay safe, turn up the music, high five some people, and blow off some steam. So remember that. Relax. Have fun. Workout.',
 		author: '-AJ Grande'
-	},
+	}
 ]
 
-module.exports.quotes = quotes;
+// module.exports.quotes = quotes;
 module.exports.users = users;
 module.exports.wods = wods;
 module.exports.results = results;
