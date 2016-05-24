@@ -8,9 +8,9 @@ var ReactDOM = require('react-dom');
 		this.state = {
 			users: [],
 			user: props.users[0],
-			wods: props.wods,
+			wods: [],
 			wod: props.wods[0],
-			results: props.results
+			results: []
 		}
 	}
 
@@ -26,14 +26,51 @@ var ReactDOM = require('react-dom');
 	}
 
 	componentDidMount() {
-		this.loadData();
+		this.loadUsers();
+		this.loadResults();
+		this.loadWods();
 	}
 
-	loadData() {
-		$.ajax('/users').done(function(data) {
-			this.setState({ users: data });
+	loadUsers() {
+		var context = this;
+		$.ajax('/users').done(function(users) {
+			console.log('users', users);
+			context.setState({ users: users });
 		})
 	}
+
+	loadResults() {
+		var context = this;
+		$.ajax('/results').done(function(results) {
+			console.log('results', results);
+			context.setState({ results: results });
+		})
+	}
+
+	loadWods() {
+		var context = this;
+		$.ajax('/wods').done(function(wods) {
+			console.log('wods', wods);
+			context.setState({ wods: wods });
+		})
+	}
+
+	// handleScoreSubmit2() {
+	// 	$.ajax({
+	//       type: 'POST', url: '/api/bugs', contentType: 'application/json',
+	//       data: JSON.stringify(bug),
+	//       success: function(data) {
+	//         var bug = data;
+	//         // We're advised not to modify the state, it's immutable. So, make a copy.
+	//         var bugsModified = this.state.bugs.concat(bug);
+	//         this.setState({bugs: bugsModified});
+	//       }.bind(this),
+	//       error: function(xhr, status, err) {
+	//         // ideally, show error to user.
+	//         console.log("Error adding bug:", err);
+	//       }
+	//     });
+	// }
 
 	render() {
 		return ( 

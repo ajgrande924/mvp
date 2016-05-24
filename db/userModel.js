@@ -20,7 +20,8 @@ var User = mongoose.model('User', userSchema);
 //     name: user.name,
 //     sex: user.sex,
 //     age: user.age,
-//     url: user.url
+//     url: user.url,
+//     affiliate: user.affiliate
 //   }).save(function(err) {
 //     if (err) {
 //       console.log('error');

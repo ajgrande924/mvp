@@ -6,7 +6,7 @@ var data = require('../client/data.js');
 var wodSchema = mongoose.Schema({
   type: String,
   name: String,
-  description: String
+  description: [String]
 });
 
 var Wod = mongoose.model('Wod', wodSchema);
