@@ -199,3 +199,7 @@ var wods = [
 		description: ['Complete as many rounds as possible in 18 mins of:','15 Box Jumps, 24/20 in','12 Push Press, 115/75 lbs','9 Toes To Bars']
 	}
 ]
+
+module.exports.users = users;
+module.exports.wods = wods;
+module.exports.results = results;

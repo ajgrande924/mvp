@@ -18,7 +18,9 @@
     "webpack": "^1.13.1"
   },
   "dependencies": {
+    "body-parser": "^1.15.1",
     "express": "^4.13.4",
+    "mongoose": "^4.4.19",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "style-loader": "^0.13.1",

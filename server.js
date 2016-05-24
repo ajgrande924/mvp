@@ -4,9 +4,20 @@ var webpack = require('webpack');
 var webpackMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');  
 var config = require('./webpack.config.js');
+var bodyParser = require('body-parser')
+
+var mongoose = require('mongoose');
+var db = require('./db/dbConfig.js');
+var User = require('./db/userModel.js');
+var Wod = require('./db/wodModel.js');
+var Result = require('./db/resultModel.js');
+
 
 var app = express();  
 var compiler = webpack(config);
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true }));
 
 app.use(express.static(__dirname + '/client'));  
 app.use(webpackMiddleware(compiler));  
