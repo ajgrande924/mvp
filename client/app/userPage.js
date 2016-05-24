@@ -137,7 +137,7 @@ var DropdownOpenWod = (props) => (
 var UserInfo = (props) => (
 	<div className='container-fluid col-xs-6 col-sm-3 userInfo'>
 		<img className='img-thumbnail userInfoImage' src={props.user.url}></img>
-		<p>{props.user.name}</p>
+		<h3>{props.user.name}</h3>
 		<p>{props.user.sex} | {props.user.age}</p>
 		<p>Affiliate: {props.user.affiliate}</p>
 	</div>
