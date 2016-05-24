@@ -10,7 +10,9 @@ var ReactDOM = require('react-dom');
 			user: props.users[0],
 			wods: [],
 			wod: props.wods[0],
-			results: []
+			results: [],
+			quotes: props.quotes,
+			quote: props.quotes[0]
 		}
 	}
 
@@ -44,7 +46,17 @@ var ReactDOM = require('react-dom');
 			context.setState({ wods: wods });
 			context.setState({ wod: wods[0] });
 		})
+	}
+
+	randomQuote() {
+		var index = Math.floor(Math.random() * this.state.quotes.length);
+		this.setState({ quotes: this.state.quotes[index]});
 	} 
+
+	handleQuoteSubmit(quote) {
+		var context = this;
+		this.setState({ quotes: this.state.results.concat([quote])});
+	}
 
 	handleScoreSubmit(result) {
 		var context = this;
@@ -77,22 +89,47 @@ var ReactDOM = require('react-dom');
 				<UserInfo user={this.state.user} />
 				<WodViewer wod={this.state.wod} />
 				<EnterResults wod={this.state.wod} user={this.state.user} handleScoreSubmit={this.handleScoreSubmit.bind(this)}/> 
-				<Buffer results={this.state.results}/>
+				<MotivateMe quote={this.state.quote} randomQuote={this.randomQuote.bind(this)} handleQuoteSubmit={this.handleQuoteSubmit.bind(this)}/>
 				<UserFeed results={this.state.results} users={this.state.users} />
 			</div>
 		);
 	}
 }
 
-var Buffer = (props) => (
-	<div className='list-group col-md-6'> 
-		{props.results.map(result => 
-			<a className="list-group-item">
-			  <h4 className="list-group-item-heading">Buffer</h4>
-			  <p className="list-group-item-text">Buffer</p>
-			  <p className="list-group-item-text">buffer</p>
-			</a>
-		)}
+var MotivateMe = (props) => (
+	<div className='col-md-6 motivateMe'>
+		<div className='panel panel-success'>
+			<div className='panel-heading'>
+				<h2>Motivate Me</h2>
+			</div>
+			<div className='panel-body motivateStuff'>
+				<Quote quote={props.quote} />
+				<button className="btn btn-success" onClick={() => props.randomQuote()}>Motivate Me Again</button>
+			</div>
+		</div>
+		<div className="panel panel-default" id="panel1">
+		    <div className="panel-heading">
+		    	<h4 className="panel-title"><a data-toggle="collapse" data-target="#collapseOne" href="#collapseOne">Have a Quote?</a></h4>
+		    </div>
+		    <div id="collapseOne" className="panel-collapse collapse">
+		        <div className="panel-body">
+			        <div className='form-group'>
+			        	<label className='mylabel'>Enter a Quote</label>
+			        	<input id='quote' type='text' className='form-control' placeholder='Quote Me'></input>
+			        	<label className='mylabel'>Enter an Author</label>
+			        	<input id='author' type='text' className='form-control' placeholder='Author Me'></input>
+			        	<button onClick={() => props.handleQuoteSubmit({ quote: $('#quote').val(), author: $('#author').val() })} type='submit' className='btn btn-primary'>Submit</button>
+			        </div>
+		        </div>
+		    </div>
+		</div>
+	</div>
+)
+
+var Quote = (props) => (
+	<div>
+		<h3 className='quote'><i>{props.quote.quote}</i></h3>
+		<p><i>{props.quote.author}</i></p>
 	</div>
 )
 
@@ -245,7 +282,7 @@ var EnterResults = (props) => (
 	</div>
 )
 
-ReactDOM.render(<App users={users} wods={wods} results={results}/>, document.getElementById('app'));
+ReactDOM.render(<App users={users} wods={wods} results={results} quotes={quotes}/>, document.getElementById('app'));
 
 
 

@@ -18,7 +18,8 @@ var compiler = webpack(config);
 
 app.use(bodyParser.json());
 
-app.use(express.static(__dirname + '/client'));  
+app.use(express.static(__dirname + '/client')); 
+app.use('/login', express.static(__dirname + '/client/cover')); 
 app.use(webpackMiddleware(compiler));  
 
 // app.get('*', function response(req, res) {  
