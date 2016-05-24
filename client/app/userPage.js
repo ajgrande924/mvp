@@ -14,16 +14,16 @@ var ReactDOM = require('react-dom');
 		}
 	}
 
-	handleScoreSubmit(result) {
-		console.log('date', new Date());
-		var dateObj = new Date();
-		var month = dateObj.getUTCMonth() + 1; //months from 1-12
-		var day = dateObj.getUTCDate();
-		var year = dateObj.getUTCFullYear();
-		var newDate = '' + month + '/' + day + '/' + year 
-		result.date = newDate;
-		this.setState({results: [result].concat(this.state.results)});
-	}
+	// handleScoreSubmit(result) {
+	// 	console.log('date', new Date());
+	// 	var dateObj = new Date();
+	// 	var month = dateObj.getUTCMonth() + 1; //months from 1-12
+	// 	var day = dateObj.getUTCDate();
+	// 	var year = dateObj.getUTCFullYear();
+	// 	var newDate = '' + month + '/' + day + '/' + year 
+	// 	result.date = newDate;
+	// 	this.setState({results: [result].concat(this.state.results)});
+	// }
 
 	componentDidMount() {
 		this.loadUsers();
@@ -55,22 +55,26 @@ var ReactDOM = require('react-dom');
 		})
 	}
 
-	// handleScoreSubmit2() {
-	// 	$.ajax({
-	//       type: 'POST', url: '/api/bugs', contentType: 'application/json',
-	//       data: JSON.stringify(bug),
-	//       success: function(data) {
-	//         var bug = data;
-	//         // We're advised not to modify the state, it's immutable. So, make a copy.
-	//         var bugsModified = this.state.bugs.concat(bug);
-	//         this.setState({bugs: bugsModified});
-	//       }.bind(this),
-	//       error: function(xhr, status, err) {
-	//         // ideally, show error to user.
-	//         console.log("Error adding bug:", err);
-	//       }
-	//     });
-	// }
+	handleScoreSubmit(result) {
+		console.log('date', new Date());
+		var dateObj = new Date();
+		var month = dateObj.getUTCMonth() + 1; //months from 1-12
+		var day = dateObj.getUTCDate();
+		var year = dateObj.getUTCFullYear();
+		var newDate = '' + month + '/' + day + '/' + year 
+		result.date = newDate;
+		this.setState({results: [result].concat(this.state.results)});
+		$.ajax({
+	      type: 'POST', url: '/results', contentType: 'application/json',
+	      data: JSON.stringify(result),
+	      success: function(data) {
+	      	console.log('added successfully');
+	      }.bind(this),
+	      error: function(xhr, status, err) {
+	        console.log("Error adding bug:", err);
+	      }
+	    });
+	}
 
 	render() {
 		return ( 
