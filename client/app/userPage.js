@@ -65,8 +65,15 @@ var ReactDOM = require('react-dom');
 	} 
 
 	handleQuoteSubmit(quote) {
+		// context for ajax post
 		var context = this;
 		this.setState({ quotes: this.state.results.concat([quote])});
+	}
+
+	handleNewUserSubmit(user) {
+		//context for ajax post
+		var context = this;
+		this.setState({ users: this.state.users.concat([user])});
 	}
 
 	handleScoreSubmit(result) {
@@ -102,6 +109,7 @@ var ReactDOM = require('react-dom');
 				<EnterResults wod={this.state.wod} user={this.state.user} handleScoreSubmit={this.handleScoreSubmit.bind(this)}/> 
 				<MotivateMe quote={this.state.quote} randomQuote={this.randomQuote.bind(this)} handleQuoteSubmit={this.handleQuoteSubmit.bind(this)}/>
 				<UserFeed results={this.state.results} users={this.state.users} />
+				<NewUserModal handleNewUserSubmit={this.handleNewUserSubmit.bind(this)}/>
 			</div>
 		);
 	}
@@ -129,6 +137,7 @@ var MotivateMe = (props) => (
 			        	<input id='quote' type='text' className='form-control' placeholder='Quote Me'></input>
 			        	<label className='mylabel'>Enter an Author</label>
 			        	<input id='author' type='text' className='form-control' placeholder='Author Me'></input>
+			        	<br></br>
 			        	<button onClick={() => props.handleQuoteSubmit({ quote: $('#quote').val(), author: $('#author').val() })} type='submit' className='btn btn-primary'>Submit</button>
 			        </div>
 		        </div>
@@ -223,6 +232,7 @@ var NavBar = (props) => (
                 </li>
 		      </ul>
 		      <ul className='nav navbar-nav navbar-right'>
+		      	 <li><a type="button" data-toggle="modal" data-target="#myModal">Signup</a></li>
 		      	 <li><a>Logout</a></li>
 		      </ul>
 		    </div>
@@ -292,6 +302,33 @@ var EnterResults = (props) => (
 		</div>
 	</div>
 )
+var NewUserModal = (props) => (
+	<div id="myModal" className="modal fade" role="dialog">
+	  <div className="modal-dialog">
+	    <div className="modal-content">
+	      <div className="modal-header">
+	        <button type="button" className="close" data-dismiss="modal">&times;</button>
+	        <h4 className="modal-title">Signup As a New User</h4>
+	      </div>
+	      <div className="modal-body">
+	        <label>Name</label>
+	        <input id='userName' type='text' className='form-control' placeholder='Enter your Name'></input>
+			<label>Male or Female?</label>
+			<input id='userSex' type='text' className='form-control' placeholder='Male or Female?'></input>
+			<label>Age</label>
+			<input id='userAge' type='text' className='form-control' placeholder='Enter your Age'></input>
+			<label>Profile Picture Link</label>
+			<input id='userUrl' type='text' className='form-control' placeholder='Enter a profile picture link'></input>
+			<label>Affiliate</label>
+			<input id='userAffiliate' type='text' className='form-control' placeholder='Enter your affiliate/box'></input>
+	      </div>
+	      <div className="modal-footer">
+	        <button onClick={() => props.handleNewUserSubmit({ name: $('#userName').val(), sex: $('#userSex').val(), age: $('#userAge').val(), url: $('#userUrl').val(), affiliate: $('#userAffiliate').val()})} type="button" className="btn btn-primary" data-dismiss="modal">Submit</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+) 
 
 ReactDOM.render(<App users={users} wods={wods} results={results} quotes={quotes}/>, document.getElementById('app'));
 
